@@ -18,22 +18,39 @@ Small businesses get enquiries as unstructured text: emails, texts, web forms. S
 ## How to run it
 
 1. Install Python 3.10+ and the dependencies:
+   '''
    pip install -r requirements.txt
+   '''
 
 2. Get an API key from console.anthropic.com and set it as an environment variable (never put it in the code):
+   '''
    setx ANTHROPIC_API_KEY "your-key-here"
+   '''
    Then open a new terminal.
 
 3. Put fake test messages in `messages.txt`, one per line.
 
 4. Run:
+   '''
    python inbox_assistant.py
+   '''
 
-5. A timestamped `.xlsx` file appears in the folder. Then run it.
+5. A timestamped `.xlsx` file appears in the folder.
 
 ## How I tested it
 
 I wrote 30 deliberately awkward messages covering: spam and scams, a Spanish message, prompt injection, self-corrections, two people in one message, spaced-out phone numbers, multiple phone numbers, vague and relative dates, and emoji-only messages. After each prompt change I re-ran all 30 to check nothing that had been correct got worse.
+
+## Design Decisions
+
+- AI handles what its good at (the language), plain code handles the date logic
+- Failed messages show up in the spreadsheet as "NEEDS REVIEW" instead of being lost.
+
+## What I would do next
+
+- Connect a real source to use real data
+- Add a review step where a human can correct AI output
+
 
 ## Known limitations
 
